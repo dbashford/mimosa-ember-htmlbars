@@ -10,19 +10,10 @@ var fs = require( "fs" )
   };
 
 var regularBoilerplate =
-  " var HTMLBars = Ember.HTMLBars;\n" +
-  " if (!HTMLBars) {\n" +
+  "if (!Ember.HTMLBars) {\n" +
   "  throw new Error(\"HTMLBars library has not been passed in successfully\");\n" +
   "}\n\n" +
-  "var templates = {};\n" +
-  "var processEnv = function(env) {\n" +
-  "  if (!env){env = {};}\n" +
-  "  if (!env.dom){env.dom = new HTMLBars.DOMHelper();}\n" +
-  "  if (!env.hooks){env.hooks = HTMLBars.hooks;}\n" +
-  "  if (!env.partials){env.partials = templates;}\n" +
-  "  if (!env.helpers){env.helpers = {};}\n" +
-  "  return env;\n" +
-  "}\n";
+  "var templates = {};\n";
 
 var prefix = function ( mimosaConfig ) {
 
