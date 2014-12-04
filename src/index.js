@@ -83,7 +83,6 @@ var compile = function ( mimosaConfig, file, cb) {
 
   try {
     output = "Ember.TEMPLATES['" + file.templateName + "'] = Ember.HTMLBars.template(" + mimosaConfig.emberHtmlbars.lib.compileSpec( file.inputFileText ) + ");";
-    output = output.replace( /var dom = env.dom/g, "env = processEnv(env);var dom = env.dom" );
   } catch ( err ) {
     error = err;
   }
