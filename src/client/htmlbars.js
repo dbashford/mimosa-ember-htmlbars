@@ -1,6 +1,6 @@
 define(['exports'], function (exports) {
 
- 'use strict';
+  'use strict';
 
   var Morph__splice = Array.prototype.splice;
 
@@ -13,7 +13,7 @@ define(['exports'], function (exports) {
   function Morph__ensureContext(contextualElement) {
     if (!contextualElement || contextualElement.nodeType !== 1) {
       throw new Error('An element node must be provided for a contextualElement, you provided ' +
-                      (contextualElement ? 'nodeType ' + contextualElement.nodeType : 'nothing'));
+      (contextualElement ? 'nodeType ' + contextualElement.nodeType : 'nothing'));
     }
   }
 
@@ -327,7 +327,7 @@ define(['exports'], function (exports) {
     var testEl = document.createElement('div');
     testEl.innerHTML = "Test: <script type='text/x-placeholder'><\/script>Value";
     return testEl.childNodes[0].nodeValue === 'Test:' &&
-            testEl.childNodes[2].nodeValue === ' Value';
+    testEl.childNodes[2].nodeValue === ' Value';
   })(build_html_dom__doc);
 
   // IE8 create a selected attribute where they should only
@@ -344,16 +344,16 @@ define(['exports'], function (exports) {
       var detectAutoSelectedOptionRegex = /<option[^>]*selected/;
       return function detectAutoSelectedOption(select, option, html) { //jshint ignore:line
         return select.selectedIndex === 0 &&
-               !detectAutoSelectedOptionRegex.test(html);
+        !detectAutoSelectedOptionRegex.test(html);
       };
     })();
   } else {
     build_html_dom__detectAutoSelectedOption = function build_html_dom__detectAutoSelectedOption(select, option, html) { //jshint ignore:line
       var selectedAttribute = option.getAttribute('selected');
       return select.selectedIndex === 0 && (
-               selectedAttribute === null ||
-               ( selectedAttribute !== '' && selectedAttribute.toLowerCase() !== 'selected' )
-              );
+        selectedAttribute === null ||
+        ( selectedAttribute !== '' && selectedAttribute.toLowerCase() !== 'selected' )
+      );
     };
   }
 
@@ -694,88 +694,88 @@ define(['exports'], function (exports) {
     classes__removeClasses = classes__removeClassesViaAttribute;
   }
 
- /* global window:false */
- var DOMHelper__doc = typeof document === 'undefined' ? false : document;
+  /* global window:false */
+  var DOMHelper__doc = typeof document === 'undefined' ? false : document;
 
- var DOMHelper__deletesBlankTextNodes = DOMHelper__doc && (function(document){
-   var element = document.createElement('div');
-   element.appendChild( document.createTextNode('') );
-   var clonedElement = element.cloneNode(true);
-   return clonedElement.childNodes.length === 0;
- })(DOMHelper__doc);
+  var DOMHelper__deletesBlankTextNodes = DOMHelper__doc && (function(document){
+    var element = document.createElement('div');
+    element.appendChild( document.createTextNode('') );
+    var clonedElement = element.cloneNode(true);
+    return clonedElement.childNodes.length === 0;
+  })(DOMHelper__doc);
 
- var DOMHelper__ignoresCheckedAttribute = DOMHelper__doc && (function(document){
-   var element = document.createElement('input');
-   element.setAttribute('checked', 'checked');
-   var clonedElement = element.cloneNode(false);
-   return !clonedElement.checked;
- })(DOMHelper__doc);
+  var DOMHelper__ignoresCheckedAttribute = DOMHelper__doc && (function(document){
+    var element = document.createElement('input');
+    element.setAttribute('checked', 'checked');
+    var clonedElement = element.cloneNode(false);
+    return !clonedElement.checked;
+  })(DOMHelper__doc);
 
- function DOMHelper__isSVG(ns){
-   return ns === build_html_dom__svgNamespace;
- }
+  function DOMHelper__isSVG(ns){
+    return ns === build_html_dom__svgNamespace;
+  }
 
- // This is not the namespace of the element, but of
- // the elements inside that elements.
- function DOMHelper__interiorNamespace(element){
-   if (
-     element &&
-     element.namespaceURI === build_html_dom__svgNamespace &&
-     !build_html_dom__svgHTMLIntegrationPoints[element.tagName]
-   ) {
-     return build_html_dom__svgNamespace;
-   } else {
-     return null;
-   }
- }
+  // This is not the namespace of the element, but of
+  // the elements inside that elements.
+  function DOMHelper__interiorNamespace(element){
+    if (
+      element &&
+      element.namespaceURI === build_html_dom__svgNamespace &&
+      !build_html_dom__svgHTMLIntegrationPoints[element.tagName]
+    ) {
+      return build_html_dom__svgNamespace;
+    } else {
+      return null;
+    }
+  }
 
- // The HTML spec allows for "omitted start tags". These tags are optional
- // when their intended child is the first thing in the parent tag. For
- // example, this is a tbody start tag:
- //
- // <table>
- //   <tbody>
- //     <tr>
- //
- // The tbody may be omitted, and the browser will accept and render:
- //
- // <table>
- //   <tr>
- //
- // However, the omitted start tag will still be added to the DOM. Here
- // we test the string and context to see if the browser is about to
- // perform this cleanup.
- //
- // http://www.whatwg.org/specs/web-apps/current-work/multipage/syntax.html#optional-tags
- // describes which tags are omittable. The spec for tbody and colgroup
- // explains this behavior:
- //
- // http://www.whatwg.org/specs/web-apps/current-work/multipage/tables.html#the-tbody-element
- // http://www.whatwg.org/specs/web-apps/current-work/multipage/tables.html#the-colgroup-element
- //
+  // The HTML spec allows for "omitted start tags". These tags are optional
+  // when their intended child is the first thing in the parent tag. For
+  // example, this is a tbody start tag:
+  //
+  // <table>
+  //   <tbody>
+  //     <tr>
+  //
+  // The tbody may be omitted, and the browser will accept and render:
+  //
+  // <table>
+  //   <tr>
+  //
+  // However, the omitted start tag will still be added to the DOM. Here
+  // we test the string and context to see if the browser is about to
+  // perform this cleanup.
+  //
+  // http://www.whatwg.org/specs/web-apps/current-work/multipage/syntax.html#optional-tags
+  // describes which tags are omittable. The spec for tbody and colgroup
+  // explains this behavior:
+  //
+  // http://www.whatwg.org/specs/web-apps/current-work/multipage/tables.html#the-tbody-element
+  // http://www.whatwg.org/specs/web-apps/current-work/multipage/tables.html#the-colgroup-element
+  //
 
- var DOMHelper__omittedStartTagChildTest = /<([\w:]+)/;
- function DOMHelper__detectOmittedStartTag(string, contextualElement){
-   // Omitted start tags are only inside table tags.
-   if (contextualElement.tagName === 'TABLE') {
-     var omittedStartTagChildMatch = DOMHelper__omittedStartTagChildTest.exec(string);
-     if (omittedStartTagChildMatch) {
-       var omittedStartTagChild = omittedStartTagChildMatch[1];
-       // It is already asserted that the contextual element is a table
-       // and not the proper start tag. Just see if a tag was omitted.
-       return omittedStartTagChild === 'tr' ||
-              omittedStartTagChild === 'col';
-     }
-   }
- }
+  var DOMHelper__omittedStartTagChildTest = /<([\w:]+)/;
+  function DOMHelper__detectOmittedStartTag(string, contextualElement){
+    // Omitted start tags are only inside table tags.
+    if (contextualElement.tagName === 'TABLE') {
+      var omittedStartTagChildMatch = DOMHelper__omittedStartTagChildTest.exec(string);
+      if (omittedStartTagChildMatch) {
+        var omittedStartTagChild = omittedStartTagChildMatch[1];
+        // It is already asserted that the contextual element is a table
+        // and not the proper start tag. Just see if a tag was omitted.
+        return omittedStartTagChild === 'tr' ||
+        omittedStartTagChild === 'col';
+      }
+    }
+  }
 
- function DOMHelper__buildSVGDOM(html, dom){
-   var div = dom.document.createElement('div');
-   div.innerHTML = '<svg>'+html+'</svg>';
-   return div.firstChild.childNodes;
- }
+  function DOMHelper__buildSVGDOM(html, dom){
+    var div = dom.document.createElement('div');
+    div.innerHTML = '<svg>'+html+'</svg>';
+    return div.firstChild.childNodes;
+  }
 
- /*
+  /*
   * A class wrapping DOM functions to address environment compatibility,
   * namespaces, contextual elements for morph un-escaped content
   * insertion.
@@ -792,195 +792,177 @@ define(['exports'], function (exports) {
   * @constructor
   * @param {HTMLDocument} _document The document DOM methods are proxied to
   */
- function DOMHelper__DOMHelper(_document){
-   this.document = _document || window.document;
-   this.namespace = null;
- }
-
- var DOMHelper__prototype = DOMHelper__DOMHelper.prototype;
- DOMHelper__prototype.constructor = DOMHelper__DOMHelper;
-
- DOMHelper__prototype.insertBefore = function(element, childElement, referenceChild) {
-   return element.insertBefore(childElement, referenceChild);
- };
-
- DOMHelper__prototype.appendChild = function(element, childElement) {
-   return element.appendChild(childElement);
- };
-
- DOMHelper__prototype.appendText = function(element, text) {
-   return element.appendChild(this.document.createTextNode(text));
- };
-
- DOMHelper__prototype.setAttribute = function(element, name, value) {
-   element.setAttribute(name, value);
- };
-
- DOMHelper__prototype.removeAttribute = function(element, name) {
-   element.removeAttribute(name);
- };
-
- DOMHelper__prototype.setProperty = function(element, name, value) {
-   element[name] = value;
- };
-
- if (DOMHelper__doc && DOMHelper__doc.createElementNS) {
-   // Only opt into namespace detection if a contextualElement
-   // is passed.
-   DOMHelper__prototype.createElement = function(tagName, contextualElement) {
-     var namespace = this.namespace;
-     if (contextualElement) {
-       if (tagName === 'svg') {
-         namespace = build_html_dom__svgNamespace;
-       } else {
-         namespace = DOMHelper__interiorNamespace(contextualElement);
-       }
-     }
-     if (namespace) {
-       return this.document.createElementNS(namespace, tagName);
-     } else {
-       return this.document.createElement(tagName);
-     }
-   };
- } else {
-   DOMHelper__prototype.createElement = function(tagName) {
-     return this.document.createElement(tagName);
-   };
- }
-
- DOMHelper__prototype.addClasses = classes__addClasses;
- DOMHelper__prototype.removeClasses = classes__removeClasses;
-
- DOMHelper__prototype.setNamespace = function(ns) {
-   this.namespace = ns;
- };
-
- DOMHelper__prototype.detectNamespace = function(element) {
-   this.namespace = DOMHelper__interiorNamespace(element);
- };
-
- DOMHelper__prototype.createDocumentFragment = function(){
-   return this.document.createDocumentFragment();
- };
-
- DOMHelper__prototype.createTextNode = function(text){
-   return this.document.createTextNode(text);
- };
-
- DOMHelper__prototype.createComment = function(text){
-   return this.document.createComment(text);
- };
-
- DOMHelper__prototype.repairClonedNode = function(element, blankChildTextNodes, isChecked){
-   if (DOMHelper__deletesBlankTextNodes && blankChildTextNodes.length > 0) {
-     for (var i=0, len=blankChildTextNodes.length;i<len;i++){
-       var textNode = this.document.createTextNode(''),
-           offset = blankChildTextNodes[i],
-           before = element.childNodes[offset];
-       if (before) {
-         element.insertBefore(textNode, before);
-       } else {
-         element.appendChild(textNode);
-       }
-     }
-   }
-   if (DOMHelper__ignoresCheckedAttribute && isChecked) {
-     element.setAttribute('checked', 'checked');
-   }
- };
-
- DOMHelper__prototype.cloneNode = function(element, deep){
-   var clone = element.cloneNode(!!deep);
-   return clone;
- };
-
- DOMHelper__prototype.createMorph = function(parent, start, end, contextualElement){
-   if (!contextualElement && parent.nodeType === 1) {
-     contextualElement = parent;
-   }
-   return new Morph__default(parent, start, end, this, contextualElement);
- };
-
- DOMHelper__prototype.createUnsafeMorph = function(parent, start, end, contextualElement){
-   var morph = this.createMorph(parent, start, end, contextualElement);
-   morph.escaped = false;
-   return morph;
- };
-
- // This helper is just to keep the templates good looking,
- // passing integers instead of element references.
- DOMHelper__prototype.createMorphAt = function(parent, startIndex, endIndex, contextualElement){
-   var childNodes = parent.childNodes,
-       start = startIndex === -1 ? null : childNodes[startIndex],
-       end = endIndex === -1 ? null : childNodes[endIndex];
-   return this.createMorph(parent, start, end, contextualElement);
- };
-
- DOMHelper__prototype.createUnsafeMorphAt = function(parent, startIndex, endIndex, contextualElement) {
-   var morph = this.createMorphAt(parent, startIndex, endIndex, contextualElement);
-   morph.escaped = false;
-   return morph;
- };
-
- DOMHelper__prototype.insertMorphBefore = function(element, referenceChild, contextualElement) {
-   var start = this.document.createTextNode('');
-   var end = this.document.createTextNode('');
-   element.insertBefore(start, referenceChild);
-   element.insertBefore(end, referenceChild);
-   return this.createMorph(element, start, end, contextualElement);
- };
-
- DOMHelper__prototype.appendMorph = function(element, contextualElement) {
-   var start = this.document.createTextNode('');
-   var end = this.document.createTextNode('');
-   element.appendChild(start);
-   element.appendChild(end);
-   return this.createMorph(element, start, end, contextualElement);
- };
-
- DOMHelper__prototype.parseHTML = function(html, contextualElement) {
-   var isSVGContent = (
-     DOMHelper__isSVG(this.namespace) &&
-     !build_html_dom__svgHTMLIntegrationPoints[contextualElement.tagName]
-   );
-
-   if (isSVGContent) {
-     return DOMHelper__buildSVGDOM(html, this);
-   } else {
-     var nodes = build_html_dom__buildHTMLDOM(html, contextualElement, this);
-     if (DOMHelper__detectOmittedStartTag(html, contextualElement)) {
-       var node = nodes[0];
-       while (node && node.nodeType !== 1) {
-         node = node.nextSibling;
-       }
-       return node.childNodes;
-     } else {
-       return nodes;
-     }
-   }
- };
-
- var DOMHelper__default = DOMHelper__DOMHelper;
-
-
-
-  function helpers__concat(params) {
-    var value = "";
-    for (var i = 0, l = params.length; i < l; i++) {
-      value += params[i];
-    }
-    return value;
+  function DOMHelper__DOMHelper(_document){
+    this.document = _document || window.document;
+    this.namespace = null;
   }
 
-  function helpers__partial(params, hash, options, env) {
-    var template = env.partials[params[0]];
-    return template.render(this, env, options.morph.contextualElement);
-  }
+  var DOMHelper__prototype = DOMHelper__DOMHelper.prototype;
+  DOMHelper__prototype.constructor = DOMHelper__DOMHelper;
 
-  var helpers__default = {
-    concat: helpers__concat,
-    partial: helpers__partial
+  DOMHelper__prototype.insertBefore = function(element, childElement, referenceChild) {
+    return element.insertBefore(childElement, referenceChild);
   };
+
+  DOMHelper__prototype.appendChild = function(element, childElement) {
+    return element.appendChild(childElement);
+  };
+
+  DOMHelper__prototype.appendText = function(element, text) {
+    return element.appendChild(this.document.createTextNode(text));
+  };
+
+  DOMHelper__prototype.setAttribute = function(element, name, value) {
+    element.setAttribute(name, value);
+  };
+
+  DOMHelper__prototype.removeAttribute = function(element, name) {
+    element.removeAttribute(name);
+  };
+
+  DOMHelper__prototype.setProperty = function(element, name, value) {
+    element[name] = value;
+  };
+
+  if (DOMHelper__doc && DOMHelper__doc.createElementNS) {
+    // Only opt into namespace detection if a contextualElement
+    // is passed.
+    DOMHelper__prototype.createElement = function(tagName, contextualElement) {
+      var namespace = this.namespace;
+      if (contextualElement) {
+        if (tagName === 'svg') {
+          namespace = build_html_dom__svgNamespace;
+        } else {
+          namespace = DOMHelper__interiorNamespace(contextualElement);
+        }
+      }
+      if (namespace) {
+        return this.document.createElementNS(namespace, tagName);
+      } else {
+        return this.document.createElement(tagName);
+      }
+    };
+  } else {
+    DOMHelper__prototype.createElement = function(tagName) {
+      return this.document.createElement(tagName);
+    };
+  }
+
+  DOMHelper__prototype.addClasses = classes__addClasses;
+  DOMHelper__prototype.removeClasses = classes__removeClasses;
+
+  DOMHelper__prototype.setNamespace = function(ns) {
+    this.namespace = ns;
+  };
+
+  DOMHelper__prototype.detectNamespace = function(element) {
+    this.namespace = DOMHelper__interiorNamespace(element);
+  };
+
+  DOMHelper__prototype.createDocumentFragment = function(){
+    return this.document.createDocumentFragment();
+  };
+
+  DOMHelper__prototype.createTextNode = function(text){
+    return this.document.createTextNode(text);
+  };
+
+  DOMHelper__prototype.createComment = function(text){
+    return this.document.createComment(text);
+  };
+
+  DOMHelper__prototype.repairClonedNode = function(element, blankChildTextNodes, isChecked){
+    if (DOMHelper__deletesBlankTextNodes && blankChildTextNodes.length > 0) {
+      for (var i=0, len=blankChildTextNodes.length;i<len;i++){
+        var textNode = this.document.createTextNode(''),
+        offset = blankChildTextNodes[i],
+        before = element.childNodes[offset];
+        if (before) {
+          element.insertBefore(textNode, before);
+        } else {
+          element.appendChild(textNode);
+        }
+      }
+    }
+    if (DOMHelper__ignoresCheckedAttribute && isChecked) {
+      element.setAttribute('checked', 'checked');
+    }
+  };
+
+  DOMHelper__prototype.cloneNode = function(element, deep){
+    var clone = element.cloneNode(!!deep);
+    return clone;
+  };
+
+  DOMHelper__prototype.createMorph = function(parent, start, end, contextualElement){
+    if (!contextualElement && parent.nodeType === 1) {
+      contextualElement = parent;
+    }
+    return new Morph__default(parent, start, end, this, contextualElement);
+  };
+
+  DOMHelper__prototype.createUnsafeMorph = function(parent, start, end, contextualElement){
+    var morph = this.createMorph(parent, start, end, contextualElement);
+    morph.escaped = false;
+    return morph;
+  };
+
+  // This helper is just to keep the templates good looking,
+  // passing integers instead of element references.
+  DOMHelper__prototype.createMorphAt = function(parent, startIndex, endIndex, contextualElement){
+    var childNodes = parent.childNodes,
+    start = startIndex === -1 ? null : childNodes[startIndex],
+    end = endIndex === -1 ? null : childNodes[endIndex];
+    return this.createMorph(parent, start, end, contextualElement);
+  };
+
+  DOMHelper__prototype.createUnsafeMorphAt = function(parent, startIndex, endIndex, contextualElement) {
+    var morph = this.createMorphAt(parent, startIndex, endIndex, contextualElement);
+    morph.escaped = false;
+    return morph;
+  };
+
+  DOMHelper__prototype.insertMorphBefore = function(element, referenceChild, contextualElement) {
+    var start = this.document.createTextNode('');
+    var end = this.document.createTextNode('');
+    element.insertBefore(start, referenceChild);
+    element.insertBefore(end, referenceChild);
+    return this.createMorph(element, start, end, contextualElement);
+  };
+
+  DOMHelper__prototype.appendMorph = function(element, contextualElement) {
+    var start = this.document.createTextNode('');
+    var end = this.document.createTextNode('');
+    element.appendChild(start);
+    element.appendChild(end);
+    return this.createMorph(element, start, end, contextualElement);
+  };
+
+  DOMHelper__prototype.parseHTML = function(html, contextualElement) {
+    var isSVGContent = (
+      DOMHelper__isSVG(this.namespace) &&
+      !build_html_dom__svgHTMLIntegrationPoints[contextualElement.tagName]
+    );
+
+    if (isSVGContent) {
+      return DOMHelper__buildSVGDOM(html, this);
+    } else {
+      var nodes = build_html_dom__buildHTMLDOM(html, contextualElement, this);
+      if (DOMHelper__detectOmittedStartTag(html, contextualElement)) {
+        var node = nodes[0];
+        while (node && node.nodeType !== 1) {
+          node = node.nextSibling;
+        }
+        return node.childNodes;
+      } else {
+        return nodes;
+      }
+    }
+  };
+
+  var DOMHelper__default = DOMHelper__DOMHelper;
+
+
 
   function hooks__content(morph, path, context, params, hash, options, env) {
     var value, helper = hooks__lookupHelper(context, path, env);
@@ -999,19 +981,11 @@ define(['exports'], function (exports) {
     }
   }
 
-  function hooks__attribute(domElement, attributeName, quoted, context, parts, options) {
-    var attrValue;
-
-    if (quoted) {
-      attrValue = helpers__concat.call(context, parts, null, options);
+  function hooks__attribute(domElement, name, quoted, context, value) {
+    if (value === null) {
+      domElement.removeAttribute(name);
     } else {
-      attrValue = parts[0];
-    }
-
-    if (attrValue === null) {
-      domElement.removeAttribute(attributeName);
-    } else {
-      domElement.setAttribute(attributeName, attrValue);
+      domElement.setAttribute(name, value);
     }
   }
 
@@ -1055,6 +1029,14 @@ define(['exports'], function (exports) {
     morph.update(value);
   }
 
+  function hooks__concat(params) {
+    var value = "";
+    for (var i = 0, l = params.length; i < l; i++) {
+      value += params[i];
+    }
+    return value;
+  }
+
   function hooks__componentFallback(morph, tagName, context, hash, options, env) {
     var element = env.dom.createElement(tagName);
     for (var name in hash) {
@@ -1074,20 +1056,34 @@ define(['exports'], function (exports) {
     element: hooks__element,
     attribute: hooks__attribute,
     subexpr: hooks__subexpr,
+    concat: hooks__concat,
     get: hooks__get,
     set: hooks__set
   };
 
- (function (__export) {
-  __export('hooks', function () { return hooks__default; });
- __export('helpers', function () { return helpers__default; });
- __export('Morph', function () { return Morph__default; });
- __export('DOMHelper', function () { return DOMHelper__default; });
- }(function (prop, get) {
-  Object.defineProperty(exports, prop, {
-   enumerable: true,
-   get: get
-  });
- }));
+  function helpers__partial(params, hash, options, env) {
+    var template = env.partials[params[0]];
+    return template.render(this, env, options.morph.contextualElement);
+  }
+
+  var helpers__default = {
+    partial: helpers__partial
+  };
+
+
+
+
+
+  (function (__export) {
+    __export('hooks', function () { return hooks__default; });
+    __export('helpers', function () { return helpers__default; });
+    __export('Morph', function () { return Morph__default; });
+    __export('DOMHelper', function () { return DOMHelper__default; });
+  }(function (prop, get) {
+    Object.defineProperty(exports, prop, {
+      enumerable: true,
+      get: get
+    });
+  }));
 
 });
