@@ -4,6 +4,14 @@ var fs = require( "fs" )
   , path = require( "path" )
   , logger = null
   , config = require( "./config" )
+  , eachTransform = require( "./plugins/transform-each-in-to-hash" )
+  , withTransform = require( "./plugins/transform-with-as-to-hash" )
+  , defaultHTMLBarsOptions = {
+    disableComponentGeneration: true,
+    plugins: {
+      ast: [ eachTransform, withTransform ]
+    }
+  }
   , getExtensions = function ( mimosaConfig ) {
     logger = mimosaConfig.log;
     return mimosaConfig.emberHtmlbars.extensions;
@@ -82,7 +90,13 @@ var compile = function ( mimosaConfig, file, cb) {
   var output, error;
 
   try {
-    output = "Ember.TEMPLATES['" + file.templateName + "'] = Ember.HTMLBars.template(" + mimosaConfig.emberHtmlbars.lib.compileSpec( file.inputFileText ) + ");";
+    output =
+      "Ember.TEMPLATES['" + file.templateName + "'] = " +
+      "Ember.HTMLBars.template(" +
+        mimosaConfig.emberHtmlbars.lib.compileSpec(
+          file.inputFileText,
+          defaultHTMLBarsOptions ) +
+      ");";
   } catch ( err ) {
     error = err;
   }

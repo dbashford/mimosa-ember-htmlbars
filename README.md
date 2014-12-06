@@ -3,11 +3,9 @@ mimosa-ember-htmlbars
 
 ## Overview
 
-This module compiles [HTMLBars](https://github.com/tildeio/htmlbars) for use in Ember applications. If you are using HTMLBars without Ember, you probably want [mimosa-htmlbars](https://github.com/dbashford/mimosa-htmlbars).
+This module compiles [HTMLBars](https://github.com/tildeio/htmlbars) for use in Ember applications.
 
 For more information regarding Mimosa, see http://mimosa.io
-
-Note: [HTMLBars](https://github.com/tildeio/htmlbars) is still under heavy development, check back for updates!
 
 ## Usage
 
@@ -58,3 +56,7 @@ __export('helpers', function () { return helpers__default; });
 __export('Morph', function () { return Morph__default; });
 __export('DOMHelper', function () { return DOMHelper__default; });
 ```
+
+## Thanks!
+
+Much love to the folks behind both HTMLBars/Ember/Ember CLI for all the help getting this together.
