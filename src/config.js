@@ -52,7 +52,6 @@ exports.validate = function( config, validators ) {
       }
 
       for (var feature in config.emberHtmlbars.features) {
-        console.log("Setting feature", feature, "into compiler")
         config.emberHtmlbars.lib._Ember.FEATURES[feature] = config.emberHtmlbars.features[feature];
       }
     }
