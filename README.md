@@ -26,7 +26,7 @@ emberHtmlbars:
   helpers:["app/template/htmlbars-helpers"]
 ```
 
-* `lib`: You may want to use this module but may want a specific version of HTMLBars. Using the `lib` property you can provide a specific version of HTMLBars if the one being used by this module isn't to your liking. To provide a specific version, you must have it `npm install`ed into your project and then provide it to `lib`. For instance: `lib: require('htmlbars')`.
+* `lib`: You may want to use this module but may want a specific version of htmlbars. Using the `lib` property you can provide a specific version of HTMLBars if the one being used by this module isn't to your liking. To provide a specific version, you must have it `npm install`ed into your project and then provide it to `lib`. For instance: `lib: require('htmlbars')`.
 * `extensions`: an array of strings, the extensions of your HTMLBars files.
 * `helpers`: an array of strings, the paths from `watch.javascriptDir` to the files containing HTMLBars helper/partial registrations
 

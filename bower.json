@@ -1,0 +1,6 @@
+{
+  "name": "mimosa-ember-htmlbars",
+  "dependencies": {
+    "ember": "components/ember#beta"
+  }
+}

@@ -2,16 +2,8 @@
 
 var fs = require( "fs" )
   , path = require( "path" )
-  , logger = null
   , config = require( "./config" )
-  , eachTransform = require( "./plugins/transform-each-in-to-hash" )
-  , withTransform = require( "./plugins/transform-with-as-to-hash" )
-  , defaultHTMLBarsOptions = {
-    disableComponentGeneration: true,
-    plugins: {
-      ast: [ eachTransform, withTransform ]
-    }
-  }
+  , logger
   , getExtensions = function ( mimosaConfig ) {
     logger = mimosaConfig.log;
     return mimosaConfig.emberHtmlbars.extensions;
@@ -93,9 +85,9 @@ var compile = function ( mimosaConfig, file, cb) {
     output =
       "Ember.TEMPLATES['" + file.templateName + "'] = " +
       "Ember.HTMLBars.template(" +
-        mimosaConfig.emberHtmlbars.lib.compileSpec(
+        mimosaConfig.emberHtmlbars.lib.precompile(
           file.inputFileText,
-          defaultHTMLBarsOptions ) +
+          false ) +
       ");";
   } catch ( err ) {
     error = err;

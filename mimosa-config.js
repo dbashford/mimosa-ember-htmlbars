@@ -1,5 +1,12 @@
 exports.config = {
-  modules: ["eslint", "copy"],
+  modules: [
+    "eslint",
+    "copy",
+    "bower"
+  ],
+  vendor: {
+    javascripts:"vendor"
+  },
   watch: {
     sourceDir: "src",
     compiledDir: "lib",
@@ -9,11 +16,19 @@ exports.config = {
   eslint: {
     options: {
       rules: {
-        "no-global-strict": 0,
+        "global-strict": 0,
         "no-underscore-dangle": 0
       },
       env: {
         node: true
+      }
+    }
+  },
+  bower: {
+    copy: {
+      exclude:[/jquery/],
+      mainOverrides: {
+        ember: ["ember-template-compiler.js"]
       }
     }
   }
