@@ -11,20 +11,6 @@ exports.defaults = function() {
   };
 };
 
-exports.placeholder = function() {
-  return "\t\n\n" +
-         "  emberHtmlbars:              # config settings for the HTMLBars compiler module\n" +
-         "    lib: undefined         # use this property to provide a specific version of HTMLBars\n" +
-         "    extensions: [\"hbs\", \"htmlbars\"]  # default extensions for HTMLBars files\n" +
-         "    helpers:[\"app/template/htmlbars-helpers\"]  # the paths from watch.javascriptDir to\n" +
-         "                           # the files containing HTMLBars helper/partial registrations\n" +
-         "    emberPath: \"vendor/ember\"  # AMD path of the Ember library, this is used as a\n" +
-         "                           # dependency in the compiled templates.\n" +
-         "    features: {}           # the FEATURES object used in your ember application.\n" +
-         "                           # Will look for mimosa-ember-env module features as default\n" +
-         "                           # otherwise is an empty object\n";
-};
-
 exports.validate = function( config, validators ) {
   var errors = [];
 
