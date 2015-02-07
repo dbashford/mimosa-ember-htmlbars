@@ -5,6 +5,8 @@ mimosa-ember-htmlbars
 
 This module compiles [HTMLBars](https://github.com/tildeio/htmlbars) for use in Ember applications.
 
+Looking for a great place to start with HTMLBars, Ember and Mimosa?  Check out [MimosaEmberHTMLBars starter project] ](https://github.com/dbashford/MimosaEmberHTMLBarsSkeleton).
+
 For more information regarding Mimosa, see http://mimosa.io
 
 ## Usage
