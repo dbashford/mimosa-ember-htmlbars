@@ -1,6 +1,6 @@
 {
   "name": "mimosa-ember-htmlbars",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "homepage": "https://github.com/dbashford/mimosa-ember htmlbars",
   "author": "David Bashford",
   "description": "A Ember-specific HTMLBars client template compiler for Mimosa",
